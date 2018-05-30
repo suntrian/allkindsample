@@ -25,7 +25,7 @@
 
     <servlet>
         <servlet-name>MyHttpServlet</servlet-name>
-        <servlet-class>com.suntr.ServletSample.MyHttpServlet</servlet-class>
+        <servlet-class>com.suntr.servletSample.MyHttpServlet</servlet-class>
     </servlet>
 
     <servlet-mapping>

@@ -1,4 +1,4 @@
-package com.suntr.ServletSample;
+package com.suntr.servletSample;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;

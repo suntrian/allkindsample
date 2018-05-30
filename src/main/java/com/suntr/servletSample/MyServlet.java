@@ -1,4 +1,4 @@
-package com.suntr.ServletSample;
+package com.suntr.servletSample;
 
 import javax.servlet.*;
 import javax.servlet.annotation.WebServlet;

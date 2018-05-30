@@ -1,10 +1,10 @@
-//plugins {
-//    id 'java'
-//    id 'war'
-//}
+plugins {
+    id 'java'
+    id 'war'
+}
 
-apply plugin: 'java'
-apply plugin: 'war'
+//apply plugin: 'java'
+//apply plugin: 'war'
 
 group 'com.suntr'
 version '1.0-SNAPSHOT'
