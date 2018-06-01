@@ -1,5 +1,5 @@
 package com.suntr.mysqlSample;
 
-public class JdbcSample
-{
+public class JdbcSample {
+
 }
