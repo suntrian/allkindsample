@@ -43,8 +43,13 @@ dependencies {
 
             'redis.clients:jedis:2.9.0',
             'org.mongodb:mongo-java-driver:3.8.0-beta3',
-            'org.elasticsearch:elasticsearch:6.4.0',
-            'org.elasticsearch.client:elasticsearch-rest-client:6.4.0',
-            'org.elasticsearch.client:transport:6.4.0',
+            'org.elasticsearch:elasticsearch:+',
+            'org.elasticsearch.client:elasticsearch-rest-client:+',
+            'org.elasticsearch.client:transport:+',
+
+            'io.netty:netty-all:4.1.16.Final',
+            'org.projectlombok:lombok:1.18.2',
+            //'org.apache.lucene:lucene-highlighter:+',
+            'org.apache.lucene:lucene-analyzers-smartcn:+',
     )
 }
