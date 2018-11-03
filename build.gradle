@@ -9,7 +9,9 @@ plugins {
 group 'com.suntr'
 version '1.0-SNAPSHOT'
 
-sourceCompatibility = 1.8
+//sourceCompatibility = 1.8
+sourceCompatibility = 11
+
 
 repositories {
     maven{
@@ -34,11 +36,14 @@ dependencies {
             'org.apache.logging.log4j:log4j-slf4j-impl:2.11.1',
             'org.apache.commons:commons-lang3:3.4',
 
-            'org.springframework:spring-context:5.0.6.RELEASE',
-            'org.springframework:spring-aspects:5.0.6.RELEASE',
-            'org.springframework:spring-aop:5.0.6.RELEASE',
-            'org.springframework:spring-jdbc:5.0.6.RELEASE',
-
+            'org.springframework:spring-context:5.1.2.RELEASE',
+            'org.springframework:spring-aspects:5.1.2.RELEASE',
+            'org.springframework:spring-aop:5.1.2.RELEASE',
+            'org.springframework:spring-jdbc:5.1.2.RELEASE',
+            'org.springframework:spring-webflux:5.1.2.RELEASE',
+            'org.springframework:spring-web:5.1.2.RELEASE',
+            'org.springframework:spring-webmvc:5.1.2.RELEASE',
+            
             'org.xerial:sqlite-jdbc:3.23.1',
 
             'redis.clients:jedis:2.9.0',
@@ -51,5 +56,9 @@ dependencies {
             'org.projectlombok:lombok:1.18.2',
             //'org.apache.lucene:lucene-highlighter:+',
             'org.apache.lucene:lucene-analyzers-smartcn:+',
+
+            'io.projectreactor:reactor-core:3.2.2.RELEASE',
+            'io.projectreactor:reactor-test:3.2.2.RELEASE',
+            'io.projectreactor.addons:reactor-test:3.0.7.RELEASE',
     )
 }
