@@ -2,7 +2,9 @@ package com.suntr.lambdaSample;
 
 import com.suntr.util.PrintUtil;
 import org.junit.Before;
+import org.junit.FixMethodOrder;
 import org.junit.Test;
+import org.junit.runners.MethodSorters;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -11,6 +13,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+//@FixMethodOrder(MethodSorters.DEFAULT)
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class LambdaSample {
 
     List<String> sample = new ArrayList<>();
