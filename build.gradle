@@ -64,6 +64,8 @@ dependencies {
 
             'org.springframework.boot:spring-boot-parent:2.1.0.RELEASE',
             'org.springframework.boot:spring-boot-starter-webflux:2.1.0.RELEASE',
-            'org.springframework.boot:spring-boot-starter-web:2.1.0.RELEASE'
+            'org.springframework.boot:spring-boot-starter-web:2.1.0.RELEASE',
+
+            'org.javassist:javassist:3.24.0-GA',
     )
 }

@@ -10,6 +10,9 @@ import java.lang.reflect.Method;
 import java.security.GeneralSecurityException;
 import java.security.SecureRandom;
 
+/**
+ * reference https://blog.csdn.net/DianaCody/article/details/38585209
+ */
 public class DecryptClassLoader extends ClassLoader {
 
     // 这些对象在构造函数中设置，以后loadClass()方法将利用它们解密类
