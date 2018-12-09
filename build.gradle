@@ -48,9 +48,9 @@ dependencies {
 
             'redis.clients:jedis:2.9.0',
             'org.mongodb:mongo-java-driver:3.8.0-beta3',
-            'org.elasticsearch:elasticsearch:+',
-            'org.elasticsearch.client:elasticsearch-rest-client:+',
-            'org.elasticsearch.client:transport:+',
+            'org.elasticsearch:elasticsearch:6.5.2',
+            'org.elasticsearch.client:elasticsearch-rest-client:6.5.2',
+            'org.elasticsearch.client:transport:6.5.2',
 
             'io.netty:netty-all:4.1.16.Final',
             'org.projectlombok:lombok:1.18.2',
