@@ -1,8 +1,8 @@
 package com.suntr.webfluxSample.service;
 
+import com.suntr.exception.ResourceNotFoundException;
 import com.suntr.webfluxSample.entity.User;
 import io.netty.util.internal.ThreadLocalRandom;
-import org.elasticsearch.ResourceNotFoundException;
 import org.springframework.http.codec.ServerSentEvent;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestMapping;

@@ -1,8 +1,8 @@
 package com.suntr.webfluxSample.controller;
 
+import com.suntr.exception.ResourceNotFoundException;
 import com.suntr.webfluxSample.entity.User;
 import com.suntr.webfluxSample.service.UserService;
-import org.elasticsearch.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.codec.ServerSentEvent;
