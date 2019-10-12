@@ -8,3 +8,5 @@ log/
 *.log
 *.iml
 build/
+
+out/
