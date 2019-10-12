@@ -70,7 +70,7 @@ public class Main {
             String getMethodName = "get" + fieldName.substring(0, 1).toUpperCase() + fieldName.substring(1);
             try {
                 Method getMethod = c.getMethod(getMethodName);
-                fieldValue = getMethod.invoke(filter, null);
+                fieldValue = getMethod.invoke(filter);
             } catch (Exception e) {
                 e.printStackTrace();
             }
