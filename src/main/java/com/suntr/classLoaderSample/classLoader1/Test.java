@@ -1,18 +1,18 @@
 package com.suntr.classLoaderSample.classLoader1;
 
 import java.lang.reflect.InvocationTargetException;
+import java.net.URISyntaxException;
 import java.util.Date;
 
 public class Test {
 
     public static void main(String[] args) throws IllegalAccessException, InstantiationException,
-            ClassNotFoundException, NoSuchMethodException, InvocationTargetException {
+            ClassNotFoundException, NoSuchMethodException, InvocationTargetException, URISyntaxException {
         String cypheredClassPath;
         if (args!=null && args.length>0){
             cypheredClassPath = args[0];
         } else {
-            cypheredClassPath = "C:\\Users\\suntri\\Projects\\allkinksample\\out\\production\\classes\\com" +
-                    "\\suntr\\classLoaderSample\\classLoader1";
+            cypheredClassPath = Test.class.getResource("\\com\\suntr\\classLoaderSample\\classLoader1").toURI().getPath();
         }
 
 
