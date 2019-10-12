@@ -57,7 +57,7 @@ public class TxtFileIndexer {
       indexFile(file);
     }
     //返回索引了多少个文件
-    return writer.numDocs();
+    return writer.numRamDocs();
 
   }
   /**
