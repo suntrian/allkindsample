@@ -9,8 +9,8 @@ plugins {
 group 'com.suntr'
 version '1.0-SNAPSHOT'
 
-//sourceCompatibility = 1.8
-sourceCompatibility = 11
+sourceCompatibility = 1.8
+//sourceCompatibility = 11
 
 
 repositories {
@@ -80,4 +80,7 @@ dependencies {
             'org.javassist:javassist:3.24.0-GA',
             'org.mindrot:jbcrypt:0.4',
     )
+
+    implementation 'org.apache-extras.beanshell:bsh:2.0b6'
+    implementation 'com.google.guava:guava:27.1-jre'
 }
