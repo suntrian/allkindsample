@@ -16,46 +16,46 @@ import java.util.Objects;
 @RequestMapping("/user")
 public class UserController {
 
-  private final UserService userService;
+    private final UserService userService;
 
-  @Autowired
-  public UserController(final UserService userService){
-    this.userService = userService;
-  }
+    @Autowired
+    public UserController(final UserService userService){
+        this.userService = userService;
+    }
 
-  @ResponseStatus(HttpStatus.NOT_FOUND)
-  @ExceptionHandler(ResourceNotFoundException.class)
-  public void notFound(){}
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    @ExceptionHandler(ResourceNotFoundException.class)
+    public void notFound(){}
 
-  @GetMapping("")
-  public Flux<User> listUsers(){
-    return this.userService.listUser();
-  }
+    @GetMapping("")
+    public Flux<User> listUsers(){
+        return this.userService.listUser();
+    }
 
-  @GetMapping("/{id}")
-  public Mono<User> getUser(@PathVariable("id") String id){
-    return this.userService.getById(id);
-  }
+    @GetMapping("/{id}")
+    public Mono<User> getUser(@PathVariable("id") String id){
+        return this.userService.getById(id);
+    }
 
-  @PostMapping("")
-  public Mono<User> createUser(@RequestBody final User user){
-    return this.userService.createOrUpdate(user);
-  }
+    @PostMapping("")
+    public Mono<User> createUser(@RequestBody final User user){
+        return this.userService.createOrUpdate(user);
+    }
 
-  @PutMapping("/{id}")
-  public Mono<User> updateUser(@PathVariable("id") String id, @RequestBody final User user){
-    Objects.requireNonNull(user);
-    user.setId(id);
-    return this.userService.createOrUpdate(user);
-  }
+    @PutMapping("/{id}")
+    public Mono<User> updateUser(@PathVariable("id") String id, @RequestBody final User user){
+        Objects.requireNonNull(user);
+        user.setId(id);
+        return this.userService.createOrUpdate(user);
+    }
 
-  @DeleteMapping("/{id}")
-  public Mono<User> deleteUser(@PathVariable("id") String id){
-    return this.userService.delete(id);
-  }
+    @DeleteMapping("/{id}")
+    public Mono<User> deleteUser(@PathVariable("id") String id){
+        return this.userService.delete(id);
+    }
 
-  @RequestMapping("/randomInt")
-  public Flux<ServerSentEvent<Integer>> randomInt(){
-    return this.userService.randomInteger();
-  }
+    @RequestMapping("/randomInt")
+    public Flux<ServerSentEvent<Integer>> randomInt(){
+        return this.userService.randomInteger();
+    }
 }

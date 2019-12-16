@@ -12,6 +12,8 @@ version '1.0-SNAPSHOT'
 sourceCompatibility = 1.8
 //sourceCompatibility = 11
 
+compileJava.options.encoding = 'UTF-8'
+compileTestJava.options.encoding = 'UTF-8'
 
 repositories {
     maven{
@@ -26,7 +28,8 @@ dependencies {
 
     providedCompile (
             'javax.servlet:javax.servlet-api:4.0.1',
-            // 'javax.servlet:javax.servlet-api:3.1.0'
+            // 'javax.servlet:javax.servlet-api:3.1.0',
+            'org.projectlombok:lombok:1.18.10',
     )
 
     compile (
@@ -60,7 +63,6 @@ dependencies {
             'org.apache.lucene:lucene-highlighter:7.5.0',
 
             'io.netty:netty-all:4.1.16.Final',
-            'org.projectlombok:lombok:1.18.2',
 
 
             'io.projectreactor:reactor-core:3.2.2.RELEASE',
@@ -79,8 +81,10 @@ dependencies {
 
             'org.javassist:javassist:3.24.0-GA',
             'org.mindrot:jbcrypt:0.4',
+
     )
 
     implementation 'org.apache-extras.beanshell:bsh:2.0b6'
     implementation 'com.google.guava:guava:27.1-jre'
+    implementation 'org.antlr:antlr4-runtime:4.7.2'
 }
