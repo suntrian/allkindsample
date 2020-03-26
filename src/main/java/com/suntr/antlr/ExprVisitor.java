@@ -19,7 +19,7 @@ public class ExprVisitor extends ExprBaseVisitor<Integer> {
 
     @Override
     public Integer visitProg(ExprParser.ProgContext ctx) {
-        return super.visitProg(ctx);
+        return visit(ctx.stat(0));
     }
 
     @Override
@@ -69,27 +69,8 @@ public class ExprVisitor extends ExprBaseVisitor<Integer> {
     }
 
     @Override
-    public Integer visitId(ExprParser.IdContext ctx) {
-        return super.visitId(ctx);
-    }
-
-    @Override
     public Integer visitInt(ExprParser.IntContext ctx) {
         return Integer.parseInt(ctx.INT().getText());
     }
 
-    @Override
-    protected boolean shouldVisitNextChild(RuleNode node, Integer currentResult) {
-        return super.shouldVisitNextChild(node, currentResult);
-    }
-
-    @Override
-    public Integer visitTerminal(TerminalNode node) {
-        return super.visitTerminal(node);
-    }
-
-    @Override
-    protected Integer aggregateResult(Integer aggregate, Integer nextResult) {
-        return super.aggregateResult(aggregate, nextResult);
-    }
 }
