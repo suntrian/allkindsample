@@ -1,0 +1,327 @@
+[文本函数]
+#TEXT 文本函数
+
+/**
+LOWER
+
+   1. 用法：LOWER(string)
+   2. 说明：把文本中所有英文字母转化为小写
+   3. 示例：LOWER(user_name)
+   4. 参数：string: 文本类型字段
+*/
+LOWER(text:String):String               -> LOWER(#1)
+
+/**
+UPPER
+
+   1. 用法：UPPER(string)
+   2. 说明：把文本中所有英文字母转化为大写
+   3. 示例：UPPER(last name)
+   4. 参数：string：文本类型字段
+*/
+UPPER(text:String):String               -> UPPER(#1)
+
+/**
+CONCAT
+
+   1. 用法：CONCAT(str1,str2, ... strN)
+   2. 说明：返回字符串拼接的结果
+   3. 示例：CONCAT(first name, last name)
+   4. 参数：string: 文本类型
+*/
+CONCAT(vararg text:String):String     -> CONCAT(#0)
+
+/**
+TO_STRING
+
+    1. 用法： TO_STRING(field)
+    2. 说明： 返回字段转为字符串
+    3. 示例： TO_STRING(a.b.c)
+    4. 参数： 任意类型字段
+*/
+TO_STRING(field:Any):String              -> CAST(#1 AS CHAR)
+
+/**
+SUBSTRING
+
+    1. 用法： SUBSTRING(field, start, length)
+    2. 说明： 返回field从start开始，长度为length的子字符串
+    3. 示例： SUBSTRING("abcdef", 2, 3) = "bcd"
+    4. 参数： String类型参数
+*/
+SUBSTRING(field:String, start:Integer, len: Integer):String              -> SUBSTRING(#1, #2, #3)
+
+[数值函数]
+
+TO_DOUBLE
+
+    1. 用法： TO_DOUBLE(field, precision)
+    2. 说明： 强制转换字段field为Double,保留precision位小数
+    3. 示例： TO_DOUBLE("134.343", 2) = 134.34
+             TO_DOUBLE(1234, 2) = 1234.00
+    4. 参数： String, Integer 类型字段
+*/
+TO_DOUBLE(field:String, precision: Integer):Double              -> CAST(#1 AS DECIMAL(38, #2))
+
+TO_DOUBLE
+
+    1. 用法： TO_DOUBLE(field, precision)
+    2. 说明： 强制转换字段field为Double,保留precision位小数
+    3. 示例： TO_DOUBLE("134.343", 2) = 134.34
+             TO_DOUBLE(1234, 2) = 1234.00
+    4. 参数： String, Integer 类型字段
+*/
+TO_DOUBLE(field:Integer, precision: Integer):Double              -> CAST(#1 AS DECIMAL(38, #2))
+
+TO_DOUBLE
+
+    1. 用法： TO_DOUBLE(field)
+    2. 说明： 强制转换字段field为Double,保留2位小数
+    3. 示例： TO_DOUBLE("134.343") = 134.34
+             TO_DOUBLE(1234) = 1234.00
+    4. 参数： String, Integer 类型字段
+*/
+TO_DOUBLE(field:String):Double              -> CAST(#1 AS DECIMAL(38, 2))
+
+TO_DOUBLE
+
+    1. 用法： TO_DOUBLE(field)
+    2. 说明： 强制转换字段field为Double,保留2位小数
+    3. 示例： TO_DOUBLE("134.343") = 134.34
+             TO_DOUBLE(1234) = 1234.00
+    4. 参数： String, Integer 类型字段
+*/
+TO_DOUBLE(field:Integer):Double              -> CAST(#1 AS DECIMAL(38, 2))
+
+TO_INTEGER
+
+    1. 用法： TO_INTEGER(field)
+    2. 说明： 强制转换字段四舍五入为Integer
+    3. 示例： TO_INTEGER("134.235") = 134
+    4. 参数： String, Double 类型字段
+*/
+TO_INTEGER(field:String):Integer                                -> CAST(#1 AS DECIMAL)
+
+TO_INTEGER
+
+    1. 用法： TO_INTEGER(field)
+    2. 说明： 强制转换字段为Double
+    3. 示例： TO_INTEGER("134.235") = 134
+    4. 参数： String, Double 类型字段
+*/
+TO_INTEGER(field:Double):Integer                                -> CAST(#1 AS DECIMAL)
+
+/**
+    返回整数类型数字的绝对值
+    @param
+    @return
+*/
+ABS(num:Integer): Integer               -> ABS(#1)
+
+/**
+ABS
+
+   1. 用法：ABS(number)
+   2. 说明：返回number的绝对值
+   3. 示例：ABS(利润)
+   4. 参数类型：number : 数值类型字段
+*/
+ABS(num:Double): Double                 -> ABS(#1)
+
+/**
+CEILING
+
+   1. 用法：CEILING(number)
+   2. 说明：返回大于等于指定数字的最小整数
+   3. 示例：CEILING(体重)
+   4. 参数：number：数值类型字段
+*/
+CEILING(num:Double): Integer             -> CEIL(#1)
+
+/**
+FLOOR
+
+   1. 用法：FLOOR(number)
+   2. 说明：返回小于等于指定数字的最大整数
+   3. 示例：FLOOR(体重)
+   4. 参数：number：数值类型字段
+*/
+FLOOR(num:Double): Integer               -> FLOOR(#1)
+
+/**
+ROUND
+
+   1. 用法：ROUND(num1, num2)
+   2. 说明：按照四舍五入的规则保留num1的num2结果
+   3. 示例：ROUND(销售收入,2)
+   4. 参数类型：num1: 数值类型字段
+      ​				  num2: 正整数常量
+*/
+ROUND(val:Double, prec:Integer): Double-> ROUND(#1, #2)
+
+[日期函数]
+
+/**
+YEAR
+    1. 用法： YEAR(date)
+    2. 说明： 获取时间的年份
+    3. 示例： YEAR('2019-10-20') = 2019
+    4. 参数类型： Date日期类型，
+                DateTime时间类型,
+                String 字符串类型, 要求配置时间格式
+                Integer 数字类型, 要求配置时间格式
+*/
+YEAR(date: Any): Integer                                                                   -> YEAR(#1)
+
+/**
+QUARTER
+    1. 用法： QUARTER(date)
+    2. 说明： 获取时间的季度
+    3. 示例： QUARTER('2019-10-20') = 4
+    4. 参数类型： Date日期类型，
+                DateTime时间类型,
+                String 字符串类型, 要求配置时间格式
+                Integer 数字类型, 要求配置时间格式
+*/
+QUARTER(date: Any): Integer                                                                   -> QUARTER(#1)
+
+/**
+MONTH
+    1. 用法： MONTH(date)
+    2. 说明： 获取时间的月份
+    3. 示例： MONTH('2019-10-20') = 10
+    4. 参数类型： Date日期类型，
+                DateTime时间类型,
+                String 字符串类型, 要求配置时间格式
+                Integer 数字类型, 要求配置时间格式
+*/
+MONTH(date: Any): Integer                                                                   -> MONTH(#1)
+
+/**
+WEEK
+    1. 用法： WEEK(date)
+    2. 说明： 获取时间在年内的第几周, WEEK_OF_YEAR的别名
+    3. 示例： WEEK('2019-10-20') = 42
+    4. 参数类型： Date日期类型，
+                DateTime时间类型,
+                String 字符串类型, 要求配置时间格式，且至少包含天
+                Integer 数字类型, 要求配置时间格式，且至少包含天
+*/
+WEEK(date: Any): Integer                                                                   -> WEEKOFYEAR(#1)
+
+/**
+DAY
+    1. 用法： DAY(date)
+    2. 说明： 获取日期在当前月内的第几天, DAY_OF_MONTH的别名
+    3. 示例： DAY('2019-10-20') = 20
+    4. 参数类型： Date日期类型，
+                DateTime时间类型,
+                String 字符串类型, 要求配置时间格式
+                Integer 数字类型, 要求配置时间格式
+*/
+DAY(date: Any): Integer                                                                   -> DAY(#1)
+
+
+/**
+DATEADD
+
+   1. 用法：DATEADD (date,delta,datepart)
+   2. 说明：返回间隔delta个日期单位的日期
+   3. 示例：DATEADD(交易日期,7,'day')，交易日期往后推7天
+   4. 参数类型：date: 日期类型字段
+      ​				  delta: 整数常量
+      ​				  datepart: 日期粒度常量, 年 - ‘year', 月-‘month', 日 - ‘day'
+*/
+DATEADD(date:Date, delta: Integer, datepart:String :['year'|'month'|'day']): Date               -> DATE_ADD(#1, interval #2 {"#3".substring(1, "#3".length()-1)})
+
+/**
+DATEADD
+
+   1. 用法：DATEADD (datetime,delta,datepart)
+   2. 说明：返回间隔delta个日期单位的日期
+   3. 示例：DATEADD(交易日期,7,'day')，交易日期往后推7天
+   4. 参数类型：date: 日期时间类型字段
+      ​				  delta: 整数常量
+      ​				  datepart: 日期粒度常量, 年 - ‘year', 月-‘month', 日 - ‘day'
+*/
+DATEADD(date:DateTime, delta: Integer, datepart: String :['year'|'month'|'day']): DateTime      -> DATE_ADD(#1, interval #2 {"#3".substring(1, "#3".length()-1)})
+
+/**
+TO_DATE
+
+   1. 用法：TO_DATE(string, format)
+   2. 说明：把文本转化成为给定格式的时间格式
+   3. 示例：TO_DATE (销售日期, 'yyyy')
+   4. 参数类型：string: 文本类型字段
+      ​				 format:  日期格式，例如'yyyy-MM-dd'
+*/
+TO_DATE(text:String, format:String): DATE                             -> FROM_TIMESTAMP(CAST(#1 as timestamp), #2)
+
+/**
+CURRENT_DATE
+
+    1. 用法：CURRENT_DATE( )
+    2. 说明：返回当前日期
+    3. 示例：CURRENT_DATE( )
+    4. 参数：无
+*/
+CURRENT_DATE(): DATE                                                    -> CURRENT_DATE()
+
+/**
+CURRENT_DATETIME
+
+    1. 用法：CURRENT_DATETIME( )
+    2. 说明：返回当前时间
+    3. 示例：CURRENT_DATETIME( )
+    4. 参数：无
+*/
+CURRENT_DATETIME(): DATETIME                                            -> CURRENT_TIMESTAMP()
+
+
+/**
+DATEDIFF
+
+    1. 用法：DATEDIFF(String unit, TIMESTAMP / DATE enddate, TIMESTAMP / DATE startdate)
+    2. 说明：计算两个时间相隔unit的数量, enddate - startdate
+            unit：'day','week', 'month', 'quarter', 'year'
+    3. 示例：DATEDIFF('2010-11-30 23:59:59','2010-12-31') = -31
+    4. 参数：enddate, startdate
+*/
+DATEDIFF(unit:String:['day'|'week'|'month'|'quarter'|'year'],  enddate: Date, startdate: Date): Integer                       -> DATEDIFF(#1, #2)
+
+/**
+DATEDIFF
+
+    1. 用法：DATEDIFF(String unit, TIMESTAMP / DATE enddate, TIMESTAMP / DATE startdate)
+    2. 说明：计算两个时间相隔unit的数量, enddate - startdate
+
+    3. 示例：DATEDIFF('2010-11-30 23:59:59','2010-12-31') = -31
+    4. 参数：unit：'day', 'week', 'month', 'quarter', 'year'
+            enddate: 结束时间
+            startdate: 开始时间
+*/
+DATEDIFF(unit:String:['day'|'week'|'month'|'quarter'|'year'], enddate: DATETIME, startdate: DATETIME): Integer                       -> DATEDIFF(#1, #2)
+
+[条件函数]
+#控制条件跳转函数
+
+/**
+IFNULL
+       1. 用法：IFNULL(var1, var2)
+       2. 说明：如果var1为null,则返回var2，否则返回var1
+       3. 示例：IFNULL(null,2) = 2, IFNULL(1, 0) = 1
+       4. 参数类型：var1: 任意类型字段或常量
+          ​		  var2:  任意类型字段或常量
+*/
+IFNULL(val:Any, ifNullValue: Any): #1.type      -> IFNULL(#1, #2)
+
+/**
+IF
+       1. 用法：IF(var1:Bool, var2:Any, var3: Any)
+       2. 说明：如果var1为true,则返回var2，否则返回var3
+       3. 示例：IF(4/2==2,'yes', 'no') = 'yes'
+       4. 参数类型：var1: Bool类型字段或表达式
+                   var2:  任意类型字段或常量
+                   var3:  任意类型字段或常量
+*/
+IF(condition: Bool, ifTrue: Any, ifFalseOrNull: Any): #3.type     ->  IF(#1, #2, #3)
