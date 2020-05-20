@@ -1,7 +1,7 @@
 package com.suntr.antlr.function;
 
-import com.quantchi.intelquery.formula.parser.FunctionParser;
-import com.quantchi.intelquery.formula.suggestion.SyntaxError;
+import com.suntr.antlr.function.parser.FunctionParser;
+import com.suntr.antlr.function.suggestion.SyntaxError;
 import lombok.Getter;
 import org.antlr.v4.runtime.BaseErrorListener;
 import org.antlr.v4.runtime.RecognitionException;

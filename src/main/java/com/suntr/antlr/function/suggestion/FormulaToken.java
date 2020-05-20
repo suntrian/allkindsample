@@ -1,7 +1,5 @@
 package com.suntr.antlr.function.suggestion;
 
-import com.quantchi.intelquery.formula.function.FunctionConfigParser;
-import com.suntr.antlr.function.define.FunctionDefine;
 import com.suntr.antlr.function.parser.FunctionParser;
 import lombok.Data;
 import lombok.experimental.Accessors;
