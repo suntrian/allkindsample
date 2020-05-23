@@ -54,6 +54,7 @@ public class GuavaEventBus {
 
     }
 
+    @Slf4j
     public static class EventListener {
         public String last;
 
@@ -71,6 +72,7 @@ public class GuavaEventBus {
 
     }
 
+    @Slf4j
     public static class DeadEventListener {
 
         @Subscribe

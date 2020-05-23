@@ -16,36 +16,36 @@ import java.util.concurrent.ConcurrentHashMap;
 
 @Service
 public class UserService {
-  private final Map<String, User> users = new ConcurrentHashMap<>();
+    private final Map<String, User> users = new ConcurrentHashMap<>();
 
-  public Flux<User> listUser() {
-    return Flux.fromIterable(this.users.values());
-  }
+    public Flux<User> listUser() {
+        return Flux.fromIterable(this.users.values());
+    }
 
-  public Flux<User> getById(final Flux<String> ids) {
-    return ids.flatMap(id-> Mono.justOrEmpty(this.users.get(id)));
-  }
+    public Flux<User> getById(final Flux<String> ids) {
+        return ids.flatMap(id-> Mono.justOrEmpty(this.users.get(id)));
+    }
 
-  public Mono<User> getById(final String id) {
-    return Mono.justOrEmpty(this.users.get(id)).switchIfEmpty(Mono.error(new ResourceNotFoundException("user not found")));
-  }
+    public Mono<User> getById(final String id) {
+        return Mono.justOrEmpty(this.users.get(id)).switchIfEmpty(Mono.error(new ResourceNotFoundException("user not found")));
+    }
 
-  public Mono<User> createOrUpdate(final User user){
-    this.users.put(user.getId(), user);
-    return Mono.just(user);
-  }
+    public Mono<User> createOrUpdate(final User user){
+        this.users.put(user.getId(), user);
+        return Mono.just(user);
+    }
 
-  public Mono<User> delete(final String id) {
-    return Mono.justOrEmpty(this.users.remove(id));
-  }
+    public Mono<User> delete(final String id) {
+        return Mono.justOrEmpty(this.users.remove(id));
+    }
 
-  public Flux<ServerSentEvent<Integer>> randomInteger(){
-    return Flux.interval(Duration.ofSeconds(1))
-            .map(seq -> Tuples.of(seq, ThreadLocalRandom.current().nextInt()))
-            .map(data -> ServerSentEvent.<Integer>builder()
-                    .event("random")
-                    .id(Long.toString(data.getT1()))
-                    .data(data.getT2())
-                    .build());
-  }
+    public Flux<ServerSentEvent<Integer>> randomInteger(){
+        return Flux.interval(Duration.ofSeconds(1))
+                .map(seq -> Tuples.of(seq, ThreadLocalRandom.current().nextInt()))
+                .map(data -> ServerSentEvent.<Integer>builder()
+                        .event("random")
+                        .id(Long.toString(data.getT1()))
+                        .data(data.getT2())
+                        .build());
+    }
 }
