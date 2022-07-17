@@ -34,13 +34,11 @@ object FunctionConfigParser {
     private var defaultFunctionsMapBySections: MutableMap<String, MutableList<FunctionDefine>> = LinkedHashMap()
 
     //函数列表
-    @JvmOverloads
     @JvmStatic
     fun listFunctions(): List<FunctionDefine> {
         return mergeWithDefault().values.stream().flatMap { obj: List<FunctionDefine>? -> obj!!.stream() }.distinct().collect(Collectors.toList())
     }
 
-    @JvmOverloads
     @JvmStatic
     fun mapFunctionsByName(): Map<String, List<FunctionDefine>> {
         return mergeWithDefault().values.stream().flatMap { obj: List<FunctionDefine>? -> obj!!.stream() }.distinct()
@@ -50,7 +48,6 @@ object FunctionConfigParser {
     }
 
     @JvmStatic
-    @JvmOverloads
     fun mapFunctionsBySection(): Map<String, List<FunctionDefine>?>? {
         return mergeWithDefault()
     }
@@ -90,14 +87,15 @@ object FunctionConfigParser {
     }
 
     private fun _parse(configFilePath: String): MutableMap<String, MutableList<FunctionDefine>> {
-        var functionsMapBySections: MutableMap<String, MutableList<FunctionDefine>> = LinkedHashMap()
-        var inStream: InputStream? = FunctionConfigParser::class.java.getResourceAsStream(configFilePath) ?: return functionsMapBySections
-        val bufferedReader = BufferedReader(InputStreamReader(inStream!! , StandardCharsets.UTF_8))
-        var line: String? = ""
+        val functionsMapBySections: MutableMap<String, MutableList<FunctionDefine>> = LinkedHashMap()
+        val inStream: InputStream? =
+            FunctionConfigParser::class.java.getResourceAsStream(configFilePath) ?: return functionsMapBySections
+        val bufferedReader = BufferedReader(InputStreamReader(inStream!!, StandardCharsets.UTF_8))
+        var line: String?
         var curSections = arrayOf("default")
         var comment = ""
         while (bufferedReader.readLine().also { line = it } != null) {
-            var matcher: Matcher = sectionPattern.matcher(line);
+            var matcher: Matcher
             if (sectionPattern.matcher(line).also { matcher = it }.matches()) {
                 val sections = matcher.group(1)
                 curSections = sections.split(",").toTypedArray()
@@ -161,7 +159,7 @@ object FunctionConfigParser {
     }
 
     private fun readSqlMapping( builder: StringBuilder, bufferedReader: BufferedReader) {
-        var line: String? = ""
+        var line: String?
         while (bufferedReader.readLine().also { line = it } != null && !line!!.contains("'''")) {
             if (!lineCommentPattern.matcher(line).matches()){
                 builder.append(line)
@@ -202,7 +200,7 @@ object FunctionConfigParser {
         }
         val paramArray = params.split(",").toTypedArray()
         val paramDefines: MutableList<FunctionDefine.ParamDefine> = ArrayList(paramArray.size)
-        var matcher: Matcher? = null
+        var matcher: Matcher?
         for (i in paramArray.indices) {
             val p = paramArray[i]
             if (paramsPattern.matcher(p).also { matcher = it }.matches()) {

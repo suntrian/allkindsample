@@ -11,6 +11,9 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.RandomAccessFile;
 
+/**
+ * {@link <a href="http://sevenzipjbind.sourceforge.net/first_steps.html">site</a>}
+ */
 public class DeCompressUtil {
 
     public static void deCompress(String filePath) throws IOException {
