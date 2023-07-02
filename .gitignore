@@ -11,3 +11,14 @@ build/
 
 out/
 target/
+
+Thumbs.db
+.DS_Store
+.gradle
+.idea
+*.ipr
+*.iws
+.project
+.settings
+.classpath
+.factorypath

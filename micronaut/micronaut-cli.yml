@@ -1,0 +1,6 @@
+applicationType: default
+defaultPackage: com.example
+testFramework: junit
+sourceLanguage: kotlin
+buildTool: gradle_kotlin
+features: [ annotation-api, app-name, data, data-r2dbc, gradle, h2, http-client, jackson-databind, junit, kotlin, kotlin-application, kotlin-build, kotlin-extension-functions, log4j2, micronaut-aop, micronaut-build, micronaut-validation, netty-server, r2dbc, reactor, reactor-http-client, readme, shade, yaml ]
