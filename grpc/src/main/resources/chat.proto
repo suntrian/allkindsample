@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+package com.example.grpc;
+
+option java_multiple_files = true;
+option java_package = "com.example.grpc";
+option java_outer_classname = "ChatProto";
+option objc_class_prefix = "HLW";
+
+// 消息结构定义
+message ChatMessage {
+  string message_id = 1;  // 消息ID
+  string content = 2;     // 消息内容
+  string sender = 3;      // 发送者
+  string receiver = 4;    // 接收者
+  int64 send_time = 5;    // 发送时间戳(毫秒)
+  int64 receive_time = 6; // 接收时间戳(毫秒)
+}
+
+// 聊天服务定义
+service ChatService {
+  // 双向流式RPC
+  rpc chat(stream ChatMessage) returns (stream ChatMessage);
+}
