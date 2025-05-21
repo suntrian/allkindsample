@@ -2,6 +2,7 @@ plugins {
     java
     kotlin("jvm")
     id("com.google.protobuf") version "0.9.4"
+    application
 }
 
 group = "org.example.grpc"
