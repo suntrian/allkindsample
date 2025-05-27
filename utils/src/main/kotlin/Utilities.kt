@@ -3,6 +3,7 @@ package org.example.utils
 import kotlinx.datetime.*
 import kotlinx.serialization.Serializable
 import kotlinx.coroutines.*
+import java.util.UUID
 
 @Serializable
 class Printer(val message: String) {
@@ -13,5 +14,21 @@ class Printer(val message: String) {
             println(now.toString())
         }
         println(message)
+    }
+
+
+    fun uuid() {
+        print(UUID.randomUUID().toString())
+    }
+
+
+    companion object {
+
+
+        @JvmStatic
+        fun main(vararg args: String): Unit {
+            Printer("").uuid()
+        }
+
     }
 }
