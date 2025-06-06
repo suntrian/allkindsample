@@ -6,7 +6,9 @@ participant "Request Analyzer" as RA
 participant "OrchestratorAnalyzer" as OA
 participant "Agent/Tool" as AG
 end box
+participant "Kafka" AS KF
 participant "OTEL Collector" AS OC
+participant "Clickhouse" AS CH
 
 alt "root Span"
 activate CM
@@ -30,13 +32,19 @@ AG -> AG: add agent span event
 AG --> CM: generated response
 deactivate AG
 CM -> CM: set spanAttribute({"assistant_output": XXX})\nadd assistant message to memory
-activate OC
-CM -> OC: send trace span
+activate KF
+CM -> KF: send trace span
 end alt
 
 User -> CM: endConversationRequest
-CM -> OC: send end root span
 CM --> User
+CM -> KF: send end root span
+activate OC
+KF -> OC: push records
+deactivate OC
+activate CH
+OC -> CH: insert data
+deactivate CH
 end alt
 
 @enduml

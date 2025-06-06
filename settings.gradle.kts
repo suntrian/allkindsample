@@ -24,5 +24,6 @@ rootProject.name = "various_sample"
 include(":utils")
 include(":grpc")
 include(":retrofit")
-include("opentelemetry")
+include(":opentelemetry")
 include(":coroutines")
+include(":kotlin-feature")

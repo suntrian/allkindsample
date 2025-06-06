@@ -1,6 +1,9 @@
 plugins {
     java
     kotlin("jvm") version "2.1.20" apply false
+    id("org.jetbrains.kotlin.plugin.spring") version "2.2.0-RC" apply false
+    id("org.springframework.boot") version "3.5.0" apply false
+    id("io.spring.dependency-management") version "1.1.7" apply false
 }
 
 group = "com.example"
@@ -29,7 +32,7 @@ subprojects {
         testImplementation("org.jetbrains.kotlin:kotlin-test-junit5")
 
         // JUnit 5 测试框架依赖
-        testImplementation(platform("org.junit:junit-bom:5.10.2"))
+        testImplementation(platform("org.junit:junit-bom:5.12.2"))
         testImplementation("org.junit.jupiter:junit-jupiter")
         testImplementation("org.junit.jupiter:junit-jupiter-api")
         testImplementation("org.junit.jupiter:junit-jupiter-engine")
