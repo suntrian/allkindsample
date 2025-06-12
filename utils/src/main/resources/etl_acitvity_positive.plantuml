@@ -1,0 +1,77 @@
+@startuml
+!pragma useVerticalIf on
+
+|User|
+|CDI|
+|CDW|
+|CDC|
+|Airbyte|
+|Global Search|
+
+|User|
+start
+:upload file;
+|CDI|
+split
+-[hidden]->
+label s3
+:save file to S3;
+label cdw
+:send indexing message to CDW;
+|CDW|
+:receive file indexing message;
+:file parsing/chunking;
+
+:send contents to global search via kafka;
+|Global Search|
+label kafka
+:receive chunking contents from kafka;
+:save contents to open search;
+stop
+|User|
+split
+-[hidden]->
+:add google drive file;
+|CDI|
+:fetch file from google drive;
+goto s3
+
+|User|
+split
+-[hidden]->
+:add website url;
+|CDI|
+:parse and save sub links;
+:send website indexing message to CDC;
+|CDC|
+:receive website indexing message;
+:start webcrawler to scrape web content;
+:send contents to global search via kafka;
+goto kafka
+
+
+|User|
+split
+-[hidden]->
+:add salesforce ;
+|CDI|
+:save salesforce datasource info;
+goto cdw
+
+|User|
+split
+-[hidden]->
+#LightGrey:add 3rd party datasource;
+|CDI|
+:fetch auth info from ETM|CAE;
+:request add source connector;
+|Airbyte|
+:add source connector;
+|CDI|
+:request add connection between source datasource and destination s3;
+|Airbyte|
+:add connection;
+
+
+end split
+@enduml

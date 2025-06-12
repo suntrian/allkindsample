@@ -1,0 +1,73 @@
+@startuml
+'!pragma layout smetana
+'left to right direction
+hide empty description
+
+skinparam {
+    ComponentStyle rectangle
+}
+
+folder Legend {
+  [A] .> [B]: data flow
+  [B] -> [C]: control flow
+  [D] -[#Red]> [E]: New Add
+}
+
+'inside customer data'
+database "AWS S3" AS S3
+note bottom of S3: File Storage
+'database "AWS SQS" AS SQS
+'note bottom of SQS: Datasource Event Notify
+database "AWS Aurora" AS CDD
+note bottom of CDD: Metadata Storage
+package "Customer Data" {
+    [Customer Data Ingestor] as CDI
+    [Customer Data Web Crawler] as CDC
+    [Customer Data File Worker] as CDW
+}
+CDI .> S3: upload file
+'CDI -> SQS: file change event
+CDI .> CDD
+CDI --> CDC: AWS SQS
+CDI --> CDW: AWS SQS
+'SQS -> CDC
+'SQS -> CDW
+S3 .> CDC
+S3 .> CDW
+CDD .> CDC
+CDD .> CDW
+
+'dynamic datasource'
+frame airbyte {
+}
+folder "3rd party datasource" AS source {
+    top to bottom direction
+    component Email
+    component Calendar
+    component Confluence
+    component GoogleDrive
+    component Salesforce
+    component RDB
+}
+CDI --[#Red]> airbyte: datasource/connector management
+source ..[#Red]> airbyte
+airbyte ..[#Red]> S3
+
+CDI --[#Red]> [ETM|CAE]: require authentication|authorization
+
+'data source‘
+[AGW]
+[User] as manager
+manager --> [AGW]: static file operation
+manager --[#Red]> [AGW]: dynamic datasource operation
+[AGW] --> CDI
+
+'data destination'
+[Global Search System] as RSF
+CDC ..> [KAFKA]
+CDW ..> [KAFKA]
+[KAFKA] ..> RSF: Incremental doc alter events
+RSF <-- [Business Service]: data query
+
+
+@enduml

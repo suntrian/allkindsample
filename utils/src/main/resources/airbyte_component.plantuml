@@ -1,0 +1,43 @@
+@startuml
+'
+package Airbyte $tag1 {
+    [bootloader] as loader
+    note top of loader
+        Upgrade and Migrate the Database tables and confirm the environment is ready to work
+    end note
+    [webapp] as app
+    note top of app: Web UI
+    [server] as server
+    note top of server: API server, main controller
+    [worker] as worker
+    note top of worker: Reads from the task queues and executes the connection scheduling and sequencing logic, making calls to the workload API.
+    [cron] as cron
+    note top of cron
+        Clean the server and sync logs (when using local logs).
+        Regularly updates connector definitions
+        and sweeps old workloads ensuring eventual consenus.
+    end note
+    database postgres as db
+    note top of db: postgresql\nall configuration & job history storage
+    [temporal] as temporal
+    note top of temporal: Manages the scheduling and sequencing task queues and workflows.
+    [connector-builder] as builder
+    [container-orchestrator] as orch
+    [workload--api-server] as api
+    note top of api: The HTTP interface for enqueuing workloads — the discrete pods that run the connector operations.
+    [workload launcher] as launcher
+    note top of launcher
+        Consumes events from the workload API and interfaces with k8s to launch workloads.
+    end note
+
+    app --> server: api request
+    server --> db: store data
+    server --> temporal: create workflow
+    temporal --> worker: launch task
+    worker --> temporal: return status
+    worker --> api: create job
+    api --> launcher: queues workload
+
+}
+
+@enduml

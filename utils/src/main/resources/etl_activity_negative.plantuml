@@ -1,0 +1,14 @@
+@startuml
+|User|
+|CDI|
+|CDW|
+|CDC|
+|Airbyte|
+|Global Search|
+
+|User|
+start
+:delete file;
+
+
+@enduml

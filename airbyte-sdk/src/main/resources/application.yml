@@ -1,0 +1,46 @@
+airbyte:
+  server:
+    url: http://localhost:8000
+    api-key: ${AIRBYTE_API_KEY:your-api-key}
+
+connectors:
+  confluence:
+    url: ${CONFLUENCE_URL:https://your-domain.atlassian.net}
+    username: ${CONFLUENCE_USERNAME:your-username}
+    api-token: ${CONFLUENCE_API_TOKEN:your-api-token}
+    space-keys: ${CONFLUENCE_SPACE_KEYS:SPACE1,SPACE2}
+    incremental-sync: true
+
+  email:
+    host: ${EMAIL_HOST:imap.gmail.com}
+    port: ${EMAIL_PORT:993}
+    username: ${EMAIL_USERNAME:your-email@gmail.com}
+    password: ${EMAIL_PASSWORD:your-app-password}
+    folder: ${EMAIL_FOLDER:INBOX}
+    incremental-sync: true
+
+  google-drive:
+    credentials-file: ${GOOGLE_DRIVE_CREDENTIALS_FILE:credentials.json}
+    tokens-directory: ${GOOGLE_DRIVE_TOKENS_DIR:tokens}
+    scopes:
+      - https://www.googleapis.com/auth/drive.readonly
+    incremental-sync: true
+
+  aws-s3:
+    region: ${AWS_REGION:us-east-1}
+    access-key: ${AWS_ACCESS_KEY:your-access-key}
+    secret-key: ${AWS_SECRET_KEY:your-secret-key}
+    bucket: ${AWS_BUCKET:your-bucket}
+    prefix: ${AWS_PREFIX:airbyte/}
+
+  postgresql:
+    host: ${POSTGRES_HOST:localhost}
+    port: ${POSTGRES_PORT:5432}
+    database: ${POSTGRES_DB:airbyte}
+    username: ${POSTGRES_USER:postgres}
+    password: ${POSTGRES_PASSWORD:postgres}
+    schema: ${POSTGRES_SCHEMA:public}
+
+scheduling:
+  default-cron: "0 0 * * *"  # Run at midnight every day
+  timezone: ${SCHEDULING_TIMEZONE:UTC} 

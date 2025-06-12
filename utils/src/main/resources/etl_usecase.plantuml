@@ -1,0 +1,20 @@
+@startuml
+:Manager: as mgr
+
+package CDI {
+mgr -->(create group)
+mgr -->(delete group)
+mgr -->(add datasource)
+mgr -->(del datasource)
+mgr -->(upload file)
+mgr -->(remove file)
+}
+
+newpage
+
+:Group User: as user
+package "GLobal Search" {
+user -up->(query data belong to group)
+}
+
+@enduml
