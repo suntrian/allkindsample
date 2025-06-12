@@ -1,0 +1,17 @@
+aws:
+  s3:
+    region: us-east-1
+    endpoint: http://localhost:8998  # 如果使用MinIO，需要设置此值
+    access-key: your-access-key
+    secret-key: your-secret-key
+    path-style-access: true  # 如果使用MinIO，需要设置为true
+    connection-timeout: 10s
+    socket-timeout: 30s
+    max-connections: 50
+    retry-mode: standard
+    max-retry-attempts: 3
+    default-bucket: my-default-bucket
+    multipart-upload:
+      minimum-part-size: 5MB
+      maximum-part-size: 5GB
+      max-concurrent-requests: 10 
